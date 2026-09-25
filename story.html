@@ -8,7 +8,7 @@ const c=getC(), ch=CHAPTERS[c]; let s=0;
 
 function render(){
   const x = ch.scenes[s];
-  document.getElementById('storyBg').src = 'assets/story/c'+(c+1)+'_s'+(s+1)+'.png';
+  document.getElementById('storyBg').src = 'c'+(c+1)+'_s'+(s+1)+'.png';
   eyebrow.textContent = ch.num + ' · 第 ' + (s+1) + ' 幕';
   sub.textContent = x.eyebrow;
   next.textContent = s===ch.scenes.length-1 ? '故事結束｜前往章節' : '下一幕';
