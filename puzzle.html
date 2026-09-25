@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMORY_404｜Puzzle</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page"><img class="bg" id="puzzleBg" src="" alt=""><div class="overlay"></div><div class="topbar"><div><span class="dot"></span>PRIVATE MEMORY ARCHIVE</div><div id="clock">--:--</div></div>
+<div class="puzzle-wrap"><div class="puzzle-card"><div class="eyebrow" id="label"></div><h2 id="title"></h2>
+<div class="progress-row"><span>RECOVERY</span><span id="pt"></span></div><div class="progress"><span id="pb"></span></div>
+<div class="terminal" id="terminal"></div><div class="clue" id="clue"></div><textarea class="input" id="answer" rows="1"></textarea><div class="msg" id="msg"></div>
+<button class="btn" id="submit">提交答案</button><button class="btn ghost" id="hint">需要提示</button><div class="msg" id="hintMsg"></div></div></div></div>
+<script src="data.js"></script><script src="common.js"></script>
+<script>
+const c=getC(), ch=CHAPTERS[c], p=ch.puzzle;
+puzzleBg.src = ch.image;
+label.textContent = p.label;
+title.textContent = p.title;
+pt.textContent = ch.progress + '%';
+pb.style.width = ch.progress + '%';
+terminal.innerHTML = p.terminal;
+clue.innerHTML = p.clue;
+answer.placeholder = p.placeholder || '輸入答案';
+hint.onclick = ()=> hintMsg.textContent = p.hint;
+submit.onclick = ()=>{
+  const v = answer.value.trim();
+  const ok = p.freeText ? v.length >= 2 : matches(v, p.answers || []);
+  if(!ok){
+    msg.textContent = p.freeText ? '這題沒有標準答案，但要留下妳自己的答案。' : '答案似乎不對，再找找看。';
+    msg.className = 'msg err';
+    return;
+  }
+  msg.textContent = '✓ 記憶碎片已恢復';
+  msg.className = 'msg ok';
+  setTimeout(()=>{
+    if(c < CHAPTERS.length - 1) location.href = 'story.html?c=' + (c + 1);
+    else location.href = 'camera.html';
+  }, 650);
+};
+answer.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); submit.click(); } });
+</script></body></html>
