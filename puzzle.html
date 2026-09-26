@@ -1,7 +1,17 @@
 <!doctype html>
 <html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMORY_404｜Puzzle</title><link rel="stylesheet" href="style.css"></head>
 <body><div class="page"><img class="bg" id="puzzleBg" src="" alt=""><div class="overlay"></div><div class="topbar"><div><span class="dot"></span>PRIVATE MEMORY ARCHIVE</div><div id="clock">--:--</div></div>
-<div class="puzzle-wrap"><div class="puzzle-card"><div class="eyebrow" id="label"></div><h2 id="title"></h2>
+<div class="puzzle-wrap">
+  <div class="puzzle-card">
+
+    <div class="nav-row">
+      <button
+        class="btn back"
+        type="button"
+        onclick="goBack('chapter.html?c='+getC())">
+        ← 回上一頁
+      </button>
+    </div><div class="eyebrow" id="label"></div><h2 id="title"></h2>
 <div class="progress-row"><span>RECOVERY</span><span id="pt"></span></div><div class="progress"><span id="pb"></span></div>
 <div class="terminal" id="terminal"></div><div class="clue" id="clue"></div><textarea class="input" id="answer" rows="1"></textarea><div class="msg" id="msg"></div>
 <button class="btn" id="submit">提交答案</button><button class="btn ghost" id="hint">需要提示</button><div class="msg" id="hintMsg"></div></div></div></div>
