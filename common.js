@@ -12,3 +12,10 @@ function clock(){
   e.textContent = d.toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",hour12:false});
 }
 clock(); setInterval(clock,1000);
+function goBack(fallback){
+  if(window.history.length > 1){
+    window.history.back();
+  }else if(fallback){
+    window.location.href = fallback;
+  }
+}
